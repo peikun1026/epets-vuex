@@ -1,0 +1,10 @@
+
+export default {
+  receivehome (state,{home}) {
+    state.home = home;
+  },
+  receivesurprise (state,{surprise}) {
+    state.surprise = surprise;
+  },
+
+}
