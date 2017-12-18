@@ -12,5 +12,11 @@ export default {
       commit('receivesurprise',{surprise})
     })
   },
+  reqsort ({commit}){
+    axios.get('/sort').then(response=>{
+      let sort = response.data.data;
+      commit('receivesort',{sort})
+    })
+  },
 
 }

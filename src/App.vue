@@ -2,7 +2,7 @@
   <div class="content">
     <router-view></router-view>
     <div class="footernav">
-      <ul class="footernav_ul ">
+      <ul>
         <li class="home">
           <span><router-link to="/home"></router-link></span>
         </li>

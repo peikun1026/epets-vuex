@@ -6,5 +6,7 @@ export default {
   receivesurprise (state,{surprise}) {
     state.surprise = surprise;
   },
-
+  receivesort (state,{sort}) {
+    state.sort = sort;
+  },
 }

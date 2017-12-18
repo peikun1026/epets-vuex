@@ -1,12 +1,14 @@
 <template>
-  <div class="swiper-container">
-    <div class="swiper-wrapper" v-if="home.datas" >
-      <div class="swiper-slide" v-for="(data,index) in home.datas[0].value" :key="index" >
-        <img :src="data.image">
+  <div v-if="home.datas">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" v-for="(data,index) in home.datas[0].value" :key="index" >
+          <img :src="data.image">
+        </div>
       </div>
+      <!-- 如果需要分页器 -->
+      <div class="swiper-pagination"></div>
     </div>
-    <!-- 如果需要分页器 -->
-    <div class="swiper-pagination"></div>
   </div>
 </template>
 
