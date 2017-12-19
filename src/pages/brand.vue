@@ -30,9 +30,9 @@
 <script>
   import {mapState} from 'vuex';
   import Bscroll from 'better-scroll';
-  import xline from '../components/line.vue';
   export default {
     mounted () {
+      this.$store.dispatch('reqsort');
       new Bscroll(this.$refs.bcontent,{
         click:true
       })
@@ -40,9 +40,6 @@
     computed:{
       ...mapState(['sort'])
     },
-    components:{
-      xline
-    }
   }
 
 </script>
@@ -52,7 +49,7 @@
     width: 40px;
     height: 40px;
     right: 6px;
-    bottom: 65px;
+    top: 520px;
     position: fixed;
     z-index: 10;
     background: rgba(0,0,0,.4);
@@ -64,6 +61,7 @@
   .brand-list
     background: #f3f4f5;
     .recom
+      float left
       padding-bottom: 15px;
       margin-bottom: 10px;
       background: #fff;

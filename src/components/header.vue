@@ -26,16 +26,16 @@
             </div>
             <div class="find_nav">
               <div class="find_nav_left dscroll">
-                <div class="find_nav_list">
-                  <ul class="dscroll-ul">
-                    <li class="dscroll-li" v-for="(menu,index) in home.menus" :key="index">
-                      <router-link to="/classify">
-                      <span class="rela"><span>{{menu.menu_name}}</span><i></i></span>
-                    </router-link>
-                      <router-view></router-view>
-                      <!--<a href=""><span class="rela"><span>{{menu.menu_name}}</span><i></i></span></a>-->
-                    </li>
-                  </ul>
+                <div class="find_nav_list" ref="menuWrapper">
+                    <ul class="dscroll-ul">
+                      <li class="dscroll-li" v-for="(menu,index) in home.menus" :key="index">
+                        <router-link to="/classify">
+                          <span class="rela"><span>{{menu.menu_name}}</span><i></i></span>
+                        </router-link>
+                        <router-view></router-view>
+                        <!--<a href=""><span class="rela"><span>{{menu.menu_name}}</span><i></i></span></a>-->
+                      </li>
+                    </ul>
                 </div>
               </div>
             </div>
@@ -43,33 +43,34 @@
         </div>
       </div>
       <div class="switchtype">
-        <div type="dog" class="go-dog"></div>
-        <div class="changepop">
-          <div class="cartc-bg db"></div>
-          <div class="cartc-box">
-            <div class="main">
-              <p class="dogbox">DOG<b class="b-line c000 ft12">▁</b></p>
-              <p class="dearbox">亲爱的小主</p>
-              <p class="will">您即将进入<span>狗狗站</span></p>
-              <ul class="clearfix change-ul">
-                <li class="fl cat">
-                  <img src="//static.epetbar.com/static_web/wap/src/images/change-cat.png">
-                  <div>猫猫站</div>
-                </li>
-                <li class="fl dog">
-                  <img src="//static.epetbar.com/static_web/wap/src/images/change-dog1.png">
-                  <div>狗狗站</div>
-                  <a href="javascript:;">立即进入</a>
-                </li>
-                <li class="fl fish">
-                  <img src="//static.epetbar.com/static_web/wap/src/images/change-fish.png">
-                  <div>水族站</div>
-                </li>
-              </ul>
-            </div>
+        <div type="dog" class="go-dog" @click="show_pop"></div>
+        <div class="main_pop" ref="main_pop">
+          <div class="pop_wrap">
+            <p class="">{{msg[1].en_name}}
+            </p>
+            <p class="">▁</p>
+            <p class="">亲爱的小主</p>
+            <p class="">您即将进入
+              <span>{{msg[1].ch_name}}</span>
+            </p>
+            <p class="current-line c000 ft12">▁</p>
+            <ul class="clearfix ftc change-ul">
+              <li type="cat" class="pet1" @click="changeL"><img :src="msg[0].logo">
+                <p class="pet1name">{{msg[0].ch_name}}</p>
+              </li>
+              <li type="dog" class="fl pet2 mainpet rela dog"><img :src="msg[1].logo">
+                <p :style="{color:msg[1].color}">{{msg[1].ch_name}}</p>
+              </li>
+              <li type="fish" class="fl pet3 fish" @click="changeR"><img :src="msg[2].logo">
+                <p class="pet3name">{{msg[2].ch_name}}</p>
+              </li>
+            </ul>
+            <p>
+              <a href="javascript:;" class="once-into">立即进入</a>
+            </p>
           </div>
-          <a href="javascript:;" class="cartc-close afff ft20 ftc c666">
-            <img src="//static.epetbar.com/static_web/wap/src/images/close2.png">
+          <a href="javascript:;" class="cartc-close" @click="close">
+            <img src="../common/images/close2.png">
           </a>
         </div>
       </div>
@@ -82,12 +83,58 @@
   import BScroll from 'better-scroll';
   import {mapState} from 'vuex';
   export default {
+    data () {
+      return {
+        msg:[
+          {
+            en_name:'CAT',
+            ch_name:'猫猫站',
+            logo:require('../common/images/change-cat.png'),
+            color:'#e74186'
+          },
+          {
+            en_name:'DOG',
+            ch_name:'狗狗站',
+            logo:require('../common/images/change-dog1.png'),
+            color:'#4e9a36'
+          },
+          {
+            en_name:'FISH',
+            ch_name:'水族站',
+            logo:require('../common/images/change-fish.png'),
+            color:'#039ddf'
+          }
+        ]
+      }
+    },
     mounted() {
-//      new BScroll(this.$refs.scrollWrapperx,{
-//        scrollX: true,
-//        click: true
-//      })
+      new BScroll(this.$refs.menuWrapper,{
+        scrollX: true,
+        click: true
+      })
       this.$store.dispatch('reqhome');
+    },
+    methods:{
+      show_pop(){
+        this.$refs.main_pop.style.transform = 'scale(1,1)';
+        this.$refs.main_pop.style.opacity = 1;
+      },
+      close(){
+        this.$refs.main_pop.style.transform = 'scale(.01,.01)';
+        this.$refs.main_pop.style.opacity = 0;
+      },
+      changeL(){
+        let tem1 = this.msg[0];
+        let tem2 = this.msg[1];
+        this.msg.splice(0,1,tem2);
+        this.msg.splice(1,1,tem1);
+      },
+      changeR(){
+        let tem1 = this.msg[1];
+        let tem2 = this.msg[2];
+        this.msg.splice(1,1,tem2);
+        this.msg.splice(2,1,tem1);
+      },
     },
     computed:{
       ...mapState(['home']),
@@ -149,7 +196,7 @@
                 text-indent: 10px;
                 font-size: 13px;
                 outline: 0;
-              .serach-ico {
+              .serach-ico
                 width: 11px;
                 height: 11px;
                 position: absolute;
@@ -160,7 +207,7 @@
                 background-position: 0 0;
                 background: url(../common/images/search.png) no-repeat;
                 background-size: 11px auto;
-              }
+
 
           a
             display: block;
@@ -177,10 +224,11 @@
         .dscroll
           height 100%
           .find_nav_list
-            width: 140%;
+            width: 100%;
             height 100%
             .dscroll-ul
               display: flex;
+              width 140%
               height 100%
               .dscroll-li
                 width: 74.5px;
@@ -220,122 +268,80 @@
       -webkit-animation: nnh 2.5s steps(2) infinite;
       animation: nnh 2.5s steps(2) infinite;
 
-    .changepop
-      background: #fff;
-      visibility hidden
-      transform: scale(.01, .01);
-      transition: all .4s linear 0s;
-      position: fixed;
-      top: 0;
-      width: 100%;
+    .main_pop {
+      position: absolute;
       left: 0;
+      top: 0;
+      z-index: 111;
+      width: 100%;
       height: 100%;
-      z-index: 1;
-      .cartc-bg
-        background: #fff;
-        position: fixed;
-        top: 0;
+      background-color: #fff;
+      transition: all .4s linear;
+      transform: scale(.01,.01);
+      opacity: 0;
+      .pop_wrap {
+        position: absolute;
+        top: 107.5px;
         left: 0;
         width: 100%;
-        height: 100%;
-        opacity: 1;
-        display: none;
-        z-index: 1;
-
-      .cartc-box
-        width: 100%;
-        position: fixed;
-        top: 108px;
-        left: 0px;
-        /*display: none;*/
-        border-radius: 5px;
-        z-index: 1;
-        overflow: hidden!important;
-        .main
-          max-width: 640px;
-          margin: auto;
-          .dogbox
-            color: #999;
-            position: relative;
-            font-size: 16px;
+        p {
+          text-align: center;
+          color: #999;
+          margin-top: 20px;
+        }
+        ul {
+          text-align: center;
+          margin-top: 30px;
+          li {
+            display: inline-block;
+            p {
+              margin-top: 5px;
+            }
+          }
+          .pet1,
+          .pet3 {
+            width: 84px;
+            height: 88px;
             text-align: center;
-            .b-line
-              width: 100%;
-              position: absolute;
-              bottom: -4px;
-              left: 0;
-              text-align: center;
-
-
-          .dearbox
-            font-size: 16px;
-            color: #666;
-            margin-top: 20px;
+            img {
+              width: 59px;
+              height: 65px;
+            }
+          }
+          .pet2 {
+            width: 135px;
+            height: 188px;
             text-align: center;
-
-          .will
-            font-size: 20px;
-            text-align: center;
-          change-ul
-            margin-top: 35px;
-            min-width: 305px;
-            padding-left: 10%;
-            text-align: center;
-            .cat
-              float: left;
-              width: 25%;
-              text-align: center;
-              margin-top: 21%;
-              .pet1name
-                margin-top: 5px;
-                font-size: 12px;
-                color: #999;
-              img
-                max-width: 70%;
-            .dog
-              float: left;
-              position: relative;
-              text-align: center;
-              color: #4e9a36;
-              width: 40%;
-              margin-top: 14%;
-              div
-                margin-top: 5px;
-              img
-                max-width: 80%;
-              a
-                background: #4e9a36;
-                border-radius: 30px;
-                padding: 3px 15px;
-                margin-top: 25px;
-                font-size: 12px;
-                color: #fff;
-                display: inline-block;
-                text-align: center;
-
-            .fish
-              float: left;
-              width: 25%;
-              text-align: center;
-              margin-top: 21%;
-              img
-                max-width: 70%;
-                margin-top: 5px;
-                font-size: 12px;
-                color: #999;
-
-      .cartc-close
-        font-size: 20px;
-        text-align: center;
-        width: 100%;
-        height: 40px;
-        line-height: 50px;
-        position: fixed;
-        bottom: 20px;
-        left: 0;
+            img {
+              width: 108px;
+              height: 110px;
+            }
+          }
+        }
+        .once-into {
+          background: #039ddf;
+          border-radius: 30px;
+          padding: 3px 15px;
+          margin-top: 25px;
+          font-size: 12px;
+          color: #fff;
+        }
+      }
+      .cartc-close {
         display: block;
-        border-top: 1px solid #e7e7e7;
-        z-index: 1;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        border-top: 1px solid rgb(231, 231, 231);
+        text-align: center;
+        line-height: 40px;
+        img {
+          width: 23px;
+          height: 23px;
+          vertical-align: middle;
+        }
+      }
+    }
   @keyframes nnh {
     from {background-position: 0% 0%}
     to {background-position: 210% 0%}

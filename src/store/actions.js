@@ -18,5 +18,11 @@ export default {
       commit('receivesort',{sort})
     })
   },
+  reqall ({commit}){
+    axios.get('/all').then(response=>{
+      let all = response.data.data;
+      commit('receivall',{all})
+    })
+  },
 
 }

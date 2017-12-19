@@ -52,14 +52,6 @@
         <xline></xline>
         <imagea></imagea>
         <xline></xline>
-        <imagea></imagea>
-        <xline></xline>
-        <imagea></imagea>
-        <xline></xline>
-        <imagea></imagea>
-        <xline></xline>
-        <imagea></imagea>
-        <xline></xline>
         <minheader></minheader>
         <carousel></carousel>
         <xline></xline>

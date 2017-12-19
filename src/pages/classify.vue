@@ -1,11 +1,11 @@
 <template>
   <div>
     <header>
-      <div class="sort nav-sort" :class="{cur:sort}">
-        <router-link to="/classify/sort"><span @click="toggle(true)">分类</span></router-link>
+      <div class="sort nav-sort">
+        <router-link to="/classify/sort"><span>分类</span></router-link>
       </div>
-      <div class="brand nav-sort" :class="{cur:brand}">
-        <router-link to="/classify/brand"><span @click="toggle(false)">品牌</span></router-link>
+      <div class="brand nav-sort">
+        <router-link to="/classify/brand"><span>品牌</span></router-link>
       </div>
       <img src="../common/images/search.png" class="search">
     </header>
@@ -18,23 +18,7 @@
 <script>
 
   export default {
-    data () {
-      return {
-        sort:true,
-        brand:false
-      }
-    },
-    methods:{
-      toggle (isShow) {
-        if(isShow){
-          this.sort = true;
-          this.brand = false;
-        } else {
-          this.brand = true;
-          this.sort = false;
-        }
-      }
-    }
+
   }
 
 </script>
@@ -57,7 +41,7 @@
         height: 40px;
         padding: 0 4px;
         cursor: pointer;
-      &.cur span
+      .router-link-active span
         color: #ed4044;
         border-bottom: 2px solid #ed4044;
     .sort

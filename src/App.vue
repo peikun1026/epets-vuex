@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <router-view></router-view>
+    <keep-alive><router-view></router-view></keep-alive>
     <div class="footernav">
       <ul>
         <li class="home">

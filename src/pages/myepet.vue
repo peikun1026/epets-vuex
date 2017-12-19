@@ -31,11 +31,11 @@
               <ul class="mform">
                 <li>
                   <span class="mNameIco"></span>
-                  <input type="text" placeholder="手机号/邮箱/用户名" name="username" id="username">
+                  <input type="text" placeholder="手机号/邮箱/用户名" name="username" ref="username">
                 </li>
                 <li>
                   <span class="mpasswordIco"></span>
-                  <input type="password" placeholder="输入密码" name="password" id="password">
+                  <input type="password" placeholder="输入密码" name="password" ref="password">
                 </li>
               </ul>
             </div>
@@ -45,20 +45,20 @@
               <ul class="mform">
                 <li>
                   <span class="mNumIco"></span>
-                  <input type="text" placeholder="已注册的手机号" name="phone">
+                  <input type="text" placeholder="已注册的手机号" name="phone" ref="phone">
                 </li>
                 <li>
                   <span class="mpasswordIco"></span>
-                  <input type="text" placeholder="请输入图片内容" name="varify">
+                  <input type="text" placeholder="请输入图片内容" name="varify" ref="varify">
                   <span class="imgwrapper">
-                    <img src="https://wap.epet.com/share/seccode.html?hash=5157&height=30&width=85" name="varify">
+                    <img src="https://wap.epet.com/share/seccode.html?hash=5157&height=30&width=85" name="varify"
+                      @click="changeimg">
                   </span>
                 </li>
                 <li>
                   <span class="mpasswordIco"></span>
-                  <input type="text" class="dttext" placeholder="动态密码" name="code">
-
-                  <a href=""  class="get_phonepass">获取动态密码</a>
+                  <input type="text" placeholder="动态密码" name="code">
+                  <a @click="getchangepsd" class="get_phonepass">获取动态密码</a>
                 </li>
               </ul>
               <div class="forget_pass"></div>
@@ -67,11 +67,11 @@
         </div>
       </div>
       <div class="forget">
-        <a href="">忘记密码？</a>
+        <a href="javascript:;">忘记密码？</a>
         <div class="clear"></div>
       </div>
       <div class="loginbtn">
-        <a href="">登 录</a>
+        <a href="javascript:;">登 录</a>
       </div>
 
     </div>
@@ -95,6 +95,7 @@
 </template>
 
 <script>
+  import axios from 'axios';
   export default {
     data () {
       return {
@@ -116,6 +117,23 @@
           this.phonei = true;
         }
       },
+      changeimg (ev) {
+        ev.target.src = `https://wap.epet.com/share/seccode.html?hash=${new Date()}&height=30&width=85`
+      },
+      //手机获取验证码
+      getchangepsd(){
+        let phone= this.$refs.phone.value;
+        console.log(phone);
+        axios.get(`api/sendcode?phone=${phone}`)
+          .then(response=>{
+            console.log(response.data)
+          })
+          .catch(error=>{
+            console.log(error);
+          })
+      }
+
+
     }
   }
 

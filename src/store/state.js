@@ -1,5 +1,8 @@
 export default {
   home:{},
   surprise:{},
-  sort:[]
+  sort:[],
+  all:{},
+  allBrand:[],
+  isMask:false
 }
