@@ -3,6 +3,4 @@ export default {
   surprise:{},
   sort:[],
   all:{},
-  allBrand:[],
-  isMask:false
 }
