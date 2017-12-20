@@ -18,6 +18,7 @@
 
   export default {
     mounted(){
+      this.$store.dispatch('reqhome');
       var mySwiper = new Swiper ('.swiper-container', {
         autoplay:true,
         loop: true,

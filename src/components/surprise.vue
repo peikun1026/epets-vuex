@@ -21,7 +21,7 @@
           </a>
         </div>
       </div>
-      <div class="surprise-pro pl5 mb10">
+      <div class="surprise-pro">
         <div class="swiper-container">
           <div class="swiper-wrapper" v-if="surprise.info">
             <div class="swiper-slide2" v-for="(good,index) in surprise.info.goods" :key="index">
