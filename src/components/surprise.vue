@@ -31,10 +31,10 @@
                   <img :src="good.image.image">
                 </div>
                 <div class="cred ftc mt5">
-                  <span class="ft12">¥</span>
-                  <span class="ft17">{{good.sale_price}}</span>
+                  <span>¥</span>
+                  <span>{{good.sale_price}}</span>
                 </div>
-                <p class="c999 ftc ft12">{{good.little_price}}</p>
+                <p class="c999">{{good.little_price}}</p>
                 </a>
               </div>
             </div>

@@ -1,8 +1,8 @@
 <template>
   <div class="content">
-    <div class="overflow xiazaiApp">
-      <div class="overflow rela">
-        <span class="clsoebtn">
+    <div class="xiazaiApp" v-show="flag">
+      <div class="overflow">
+        <span class="clsoebtn" @click="close">
           <img id="close_down_bar" src="//static.epetbar.com/static_wap/lib/common_images/closebtn_03.png">
         </span>
         <div class="appdowimg">
@@ -96,10 +96,20 @@
   import videoimg from '../components/video.vue';
 
   export default {
+    data () {
+      return {
+        flag:true
+      }
+    },
     mounted() {
       new BScroll(this.$refs.scrollWrapper,{
         click: true
       });
+    },
+    methods:{
+      close () {
+        this.flag = false;
+      }
     },
     components: {
       imagea,

@@ -1,13 +1,48 @@
 <template>
-  <div v-if="home.datas">
-    <div class="swiper-container">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide" v-for="(data,index) in home.datas[0].value" :key="index" >
-          <img :src="data.image">
-        </div>
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide swiper-slide-duplicate">
+        <a href="javascript:;" class="pointer">
+          <img src="https://img2.epetbar.com/nowater/2017-12/16/12/1aa311095c577422cf7668bef12b5849.jpg@!water">
+        </a>
       </div>
-      <!-- 如果需要分页器 -->
-      <div class="swiper-pagination"></div>
+      <div class="swiper-slide">
+        <a href="javascript:;" class="pointer">
+          <img src="https://img2.epetbar.com/nowater/2017-12/15/14/2a19d471840591a5ffdde764fc1e7c0b.jpg@!water">
+        </a>
+      </div>
+      <div class="swiper-slide">
+        <a href="javascript:;" class="pointer">
+          <img src="https://img2.epetbar.com/nowater/2017-12/15/19/2710a37f3059fa9bb73b5aae4a44f100.jpg@!water">
+        </a>
+      </div>
+      <div class="swiper-slide swiper-slide-prev">
+        <a href="javascript:;" class="pointer">
+          <img src="https://img2.epetbar.com/nowater/2017-12/18/10/11bf2b4a0f5e6893226f50a4a6007641.jpg@!water">
+        </a>
+      </div>
+      <div class="swiper-slide swiper-slide-active">
+        <a href="javascript:;" class="pointer">
+          <img src="https://img2.epetbar.com/nowater/2017-12/18/17/d20d97e9e13a6ca49606fa88518cb6a0.jpg@!water">
+        </a>
+      </div>
+      <div class="swiper-slide swiper-slide-next">
+        <a href="javascript:;" class="pointer">
+          <img src="https://img2.epetbar.com/nowater/2017-12/16/12/1aa311095c577422cf7668bef12b5849.jpg@!water">
+        </a>
+      </div>
+      <div class="swiper-slide swiper-slide-duplicate">
+        <a href="javascript:;" class="pointer">
+          <img src="https://img2.epetbar.com/nowater/2017-12/15/14/2a19d471840591a5ffdde764fc1e7c0b.jpg@!water">
+        </a>
+      </div>
+    </div>
+    <div class="swiper-pagination banner-round banner-round0 swiper-pagination-clickable swiper-pagination-bullets">
+      <span class="swiper-pagination-bullet"></span>
+      <span class="swiper-pagination-bullet"></span>
+      <span class="swiper-pagination-bullet"></span>
+      <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
+      <span class="swiper-pagination-bullet"></span>
     </div>
   </div>
 </template>
@@ -18,7 +53,6 @@
 
   export default {
     mounted(){
-      this.$store.dispatch('reqhome');
       var mySwiper = new Swiper ('.swiper-container', {
         autoplay:true,
         loop: true,
@@ -35,18 +69,5 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-  /*.banner_item
-    min-height: 1px;
-    .swiper-container
-      width: 100%;
-      height: 100%;
-      margin: 0 auto;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-      img
-        width: 100%;
-*/
-  img
-    width 100%
+
 </style>
