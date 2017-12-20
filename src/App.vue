@@ -4,16 +4,16 @@
     <div class="footernav">
       <ul>
         <li class="home">
-          <span><router-link to="/home"></router-link></span>
+          <span class="footericon" @click="change"><router-link to="/home"></router-link></span>
         </li>
         <li class="classify">
-          <span><router-link to="/classify"></router-link></span>
+          <span class="footericon" @click="change"><router-link to="/classify"></router-link></span>
         </li>
         <li class="shopcart">
-          <span><router-link to="/shopcart"></router-link></span>
+          <span class="footericon" @click="change"><router-link to="/shopcart"></router-link></span>
         </li>
         <li class="myepet">
-          <span><router-link to="/myepet"></router-link></span>
+          <span class="footericon" @click="change"><router-link to="/myepet"></router-link></span>
         </li>
       </ul>
     </div>
@@ -24,6 +24,15 @@
 <script>
 
   export default {
+    methods:{
+      change (ev) {
+        let footericons = document.querySelectorAll('.footericon');
+        for (var i = 0; i < footericons.length; i++) {
+          footericons[i].style.backgroundPositionX = '-85px';
+          event.target.parentNode.style.backgroundPositionX = '0px';
+        }
+      }
+    }
 
   }
 </script>
