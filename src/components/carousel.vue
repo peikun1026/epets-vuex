@@ -37,13 +37,6 @@
         </a>
       </div>
     </div>
-    <div class="swiper-pagination banner-round banner-round0 swiper-pagination-clickable swiper-pagination-bullets">
-      <span class="swiper-pagination-bullet"></span>
-      <span class="swiper-pagination-bullet"></span>
-      <span class="swiper-pagination-bullet"></span>
-      <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
-      <span class="swiper-pagination-bullet"></span>
-    </div>
   </div>
 </template>
 
@@ -56,9 +49,6 @@
       var mySwiper = new Swiper ('.swiper-container', {
         autoplay:true,
         loop: true,
-        pagination: {
-          el: '.swiper-pagination',
-        },
       })
     },
     computed:{
